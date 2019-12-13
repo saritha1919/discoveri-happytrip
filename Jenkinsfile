@@ -18,11 +18,5 @@ pipeline {
 
 			}
 		}
-		stage('Deploy') {
-			steps{
-				echo "Deploying"
-				deploy adapters: [tomcat7(credentialsId: 'cc6538f6-9343-4acc-b3fd-1309b39ce983', path: '', url: 'http://localhost:8080')], contextPath: '/happytrip', war: '**/*.war'
-			}
-		}
 	}
 }
