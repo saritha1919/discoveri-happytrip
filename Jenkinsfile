@@ -14,6 +14,8 @@ pipeline {
 			steps {
 				powershell 'java -version'
 				powershell 'mvn -version'
+				powershell 'mvn clean package'
+
 			}
 		}
 		stage('Deploy') {
