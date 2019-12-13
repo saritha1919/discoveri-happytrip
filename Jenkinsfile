@@ -9,13 +9,19 @@ pipeline {
 		stage('Build') { 
 			tools {
 				jdk 'jdk8'
-				maven 'apache-maven-3.6.1'
+				maven 'apache-maven-3.5.4'
 			}
 			steps {
 				powershell 'java -version'
 				powershell 'mvn -version'
-				powershell 'mvn package'
+				powershell 'mvn clean package'
 
+			}
+		}
+		stage('Deploy') {
+			steps{
+				echo "Deploying"
+				deploy adapters: [tomcat7(credentialsId: 'cc6538f6-9343-4acc-b3fd-1309b39ce983', path: '', url: 'http://localhost:8080')], contextPath: '/happytrip', war: '**/*.war'
 			}
 		}
 	}
