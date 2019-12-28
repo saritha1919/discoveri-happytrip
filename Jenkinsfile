@@ -8,15 +8,13 @@ pipeline {
 			}
 		}
 		
-		stage('Sonarqube analysis') {
-                 steps {
-                      script {
-                           scannerHome = tool 'SonarScannerGlobalTool';
-                        }
-                          withSonarQubeEnv('SonarConfigure') {
-                            bat "${scannerHome}/bin/sonar-scanner.bat" 
-                         }
-                    }
-                }
+		stage('Sonar Qube analysis') {
+                         steps {
+                           def scannerHome = tool 'SonarQubeScanner'
+                              withSonarQubeEnv('SonarQube') {
+                               sh "${scannerHome}/bin/sonar-scanner"
+                           }
+                   }
+              }
 	}
 }
