@@ -15,9 +15,12 @@ pipeline {
 				powershell 'java -version'
 				powershell 'mvn -version'
 				powershell 'mvn clean package'
-				archiveArtifacts 'target/*.jar'
-
 			}
 		}
+		post {
+        always {
+            archiveArtifacts artifacts: 'target/*.jar', onlyIfSuccessful: true
+        }
+    }
 	}
 }
