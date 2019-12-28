@@ -17,5 +17,11 @@ pipeline {
 				powershell 'mvn clean package'
 			}
 		}
+		stage('Archiving Artifacts')
+		{
+			steps{
+				archiveArtifacts '*/target/*'
+			}
+		}
 	}
 }
