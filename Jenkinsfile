@@ -20,7 +20,7 @@ pipeline {
                stage('Archiving Artifacts') { 
                          steps{ 
                              archiveArtifacts 'target/*.war' 
-				  timeout(time:5, unit:'DAYS') {
+				  timeout(time:5, unit:'MINUTES') {
             input message:'Approve deployment?'
         }
                            } 
