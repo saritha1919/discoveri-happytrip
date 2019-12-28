@@ -14,10 +14,10 @@ pipeline {
 		
 		stage('Sonar Qube analysis') {
 			steps {
-                              withSonarQubeEnv('SonarQube') {
-                               sh "${scannerHome}/bin/sonar-scanner"
+				 withSonarQubeEnv('SonarQube') {
+                                    powershell 'mvn clean package sonar:sonar'
+                                    }
                            }
-                   }
-              }
+                }
 	}
 }
