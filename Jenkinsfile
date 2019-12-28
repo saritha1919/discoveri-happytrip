@@ -1,7 +1,5 @@
 pipeline {
-	environment {
-      scannerHome = tool 'SonarScannerGlobalTool';
-   }
+	
 	agent any
 	stages {
 		stage('Source') { 
@@ -10,9 +8,12 @@ pipeline {
 			}
 		}
 		stage('Sonarqube analysis') {
+			environment {
+      scannerHome = tool 'SonarScannerGlobalTool';
+   }
 			steps{
                               withSonarQubeEnv('SonarConfigure') {
-                                powershell "${scannerHome}/bin/sonar-scanner -D sonar.projectKey=Happytripjavaproject -D sonar.projectName=Happytripjavaproject -D sonar.projectVersion=1.0 -D sonar.sources=src/main -D sonar.language=java" 
+                                powershell "${scannerHome}/bin/sonar-scanner"
 			      }
 			}
         }
