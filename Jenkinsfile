@@ -7,15 +7,16 @@ pipeline {
 				checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/saritha1919/discoveri-happytrip.git']]])
 			}
 		}
+		
 		stage('Sonarqube analysis') {
-			environment {
-      scannerHome = tool 'SonarScannerGlobalTool';
-   }
-			steps{
-                              withSonarQubeEnv('SonarConfigure') {
-                                powershell "${scannerHome}/bin/sonar-scanner"
-			      }
-			}
-        }
+                 steps {
+                      script {
+                           scannerHome = tool 'SonarScannerGlobalTool';
+                        }
+                          withSonarQubeEnv('SonarConfigure') {
+                            bat "${scannerHome}/bin/sonar-scanner.bat" 
+                         }
+                    }
+                }
 	}
 }
