@@ -37,10 +37,11 @@ pipeline {
 			steps{
 				echo "Deploying"
 				deploy adapters: [tomcat7(credentialsId: '2262fca6-ee0c-4626-a239-37f0ae306f14', path: '', url: 'http://localhost:8085/')], contextPath: 'HappyTripAssignment', onFailure: false, war: '**/*.war'
+				mail bcc: '', body: 'automated mail', cc: 'naren.kallakuri@pratian.com', from: '', replyTo: '', subject: 'test mail', to: 'saritha.modiam@pratian.com'
 			}
 		}
     }
-	post {
+	/*post {
             always {
 		    
 		  mail bcc: '', body: 'automated mail', cc: 'naren.kallakuri@pratian.com', from: '', replyTo: '', subject: 'test mail', to: 'saritha.modiam@pratian.com'
@@ -49,5 +50,5 @@ pipeline {
                 recipientProviders: 'saritha.modiam@pratian.com',
                 subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"*/
             }
-        }
+        }*/
 }
