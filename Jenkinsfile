@@ -6,7 +6,7 @@ pipeline {
 				checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/saritha1919/discoveri-happytrip.git']]])
 			 }
 		 }
-		 stage('Build') {  
+		/* stage('Build') {  
                     tools { 
                            jdk 'jdk8' 
                            maven 'Maven' 
@@ -25,7 +25,7 @@ pipeline {
                                    }
                          } 
                  } 
-		/*stage('Sonar Qube analysis') {
+		stage('Sonar Qube analysis') {
 			steps {
 				 withSonarQubeEnv('SonarQube') {
                                     powershell 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
@@ -33,17 +33,18 @@ pipeline {
                            }
                 }*/
 		
-		stage('Deployment'){
+		/*stage('Deployment'){
 			steps{
 				echo "Deploying"
 				deploy adapters: [tomcat7(credentialsId: '2262fca6-ee0c-4626-a239-37f0ae306f14', path: '', url: 'http://localhost:8085/')], contextPath: 'HappyTripAssignment', onFailure: false, war: '**/*.war'
 			}
-		}
+		}*/
     }
 	post {
             always {
+		    echo javax.mail.Session.getDefaultInstance(java.lang.System.getProperties(), (javax.mail.Authenticator)null).getTransport(new javax.mail.internet.InternetAddress("saritha.modiam@pratian.com")).getClass().toString();
 		  mail bcc: '', body: 'automated mail', cc: 'naren.kallakuri@pratian.com', from: '', replyTo: '', subject: 'test mail', to: 'saritha.modiam@pratian.com'
-                 echo 'I will always say Hello again!'
+              
                 /* emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
                 recipientProviders: 'saritha.modiam@pratian.com',
                 subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"*/
