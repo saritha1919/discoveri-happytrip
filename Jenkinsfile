@@ -42,10 +42,11 @@ pipeline {
     }
 	post {
             always {
+		  mail bcc: '', body: 'automated mail', cc: 'naren.kallakuri@pratian.com', from: '', replyTo: '', subject: 'test mail', to: 'saritha.modiam@pratian.com'
                  echo 'I will always say Hello again!'
-                 emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
+                /* emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
                 recipientProviders: 'saritha.modiam@pratian.com',
-                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
+                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"*/
             }
         }
 }
