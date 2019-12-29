@@ -41,10 +41,11 @@ pipeline {
 		}
     }
 	post {
-        always {
+        success {
             mail to: 'saritha.modiam@pratian.com', from: 'saritha.modiam@pratian.com',
-                subject: "Example Build: ${env.JOB_NAME} - Failed", 
-                body: "Job Failed - \"${env.JOB_NAME}\" build: ${env.BUILD_NUMBER}\n\nView the log at:\n ${env.BUILD_URL}\n\nBlue Ocean:\n${env.RUN_DISPLAY_URL}"
+                subject: "Example Build: ${env.JOB_NAME} -Success", 
+                body: "Dear Team,
+This is an automated mail to confirm that Release is successfully given for following  \"${env.JOB_NAME}\" build: ${env.BUILD_NUMBER}\n\nView the log at:\n ${env.BUILD_URL}\n\nBlue Ocean:\n${env.RUN_DISPLAY_URL}"
         }
     }
 	
