@@ -33,12 +33,12 @@ pipeline {
                            }
                 }*/
 		
-		/*stage('Deployment'){
+		stage('Deployment'){
 			steps{
 				echo "Deploying"
 				deploy adapters: [tomcat7(credentialsId: '2262fca6-ee0c-4626-a239-37f0ae306f14', path: '', url: 'http://localhost:8085/')], contextPath: 'HappyTripAssignment', onFailure: false, war: '**/*.war'
 			}
-		}*/
+		}
     }
 	post {
             always {
