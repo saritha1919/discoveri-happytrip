@@ -37,9 +37,15 @@ pipeline {
 			steps{
 				echo "Deploying"
 				deploy adapters: [tomcat7(credentialsId: '2262fca6-ee0c-4626-a239-37f0ae306f14', path: '', url: 'http://localhost:8085/')], contextPath: 'HappyTripAssignment', onFailure: false, war: '**/*.war'
-				mail bcc: '', body: 'automated mail', cc: 'naren.kallakuri@pratian.com', from: '', replyTo: '', subject: 'test mail', to: 'saritha.modiam@pratian.com'
 			}
 		}
+    }
+	post {
+        always {
+            mail to: 'saritha.modiam@pratian.com', from: 'saritha.modiam@pratian.com',
+                subject: "Example Build: ${env.JOB_NAME} - Failed", 
+                body: "Job Failed - \"${env.JOB_NAME}\" build: ${env.BUILD_NUMBER}\n\nView the log at:\n ${env.BUILD_URL}\n\nBlue Ocean:\n${env.RUN_DISPLAY_URL}"
+        }
     }
 	
 }
