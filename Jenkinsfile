@@ -6,7 +6,7 @@ pipeline {
 				checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/saritha1919/discoveri-happytrip.git']]])
 			 }
 		 }
-		/* stage('Build') {  
+		  stage('Build') {  
                     tools { 
                            jdk 'jdk8' 
                            maven 'Maven' 
@@ -25,7 +25,7 @@ pipeline {
                                    }
                          } 
                  } 
-		stage('Sonar Qube analysis') {
+		/*stage('Sonar Qube analysis') {
 			steps {
 				 withSonarQubeEnv('SonarQube') {
                                     powershell 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
