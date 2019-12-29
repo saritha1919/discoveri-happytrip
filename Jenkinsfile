@@ -42,7 +42,7 @@ pipeline {
     }
 	post {
             always {
-		    echo javax.mail.Session.getDefaultInstance(java.lang.System.getProperties(), (javax.mail.Authenticator)null).getTransport(new javax.mail.internet.InternetAddress("saritha.modiam@pratian.com")).getClass().toString();
+		    
 		  mail bcc: '', body: 'automated mail', cc: 'naren.kallakuri@pratian.com', from: '', replyTo: '', subject: 'test mail', to: 'saritha.modiam@pratian.com'
               
                 /* emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
