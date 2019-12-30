@@ -25,13 +25,13 @@ pipeline {
                                    }
                          } 
                  } 
-		/*stage('Sonar Qube analysis') {
+		stage('Sonar Qube analysis') {
 			steps {
 				 withSonarQubeEnv('SonarQube') {
                                     powershell 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
                                     }
                            }
-                }*/
+                }
 		
 		stage('Deployment'){
 			steps{
