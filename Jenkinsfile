@@ -59,7 +59,7 @@ pipeline {
     }
 	post {
         success {
-            mail to: 'saritha.modiam@pratian.com, prabhav@pratian.com', from: 'saritha.modiam@pratian.com',
+            mail to: 'saritha.modiam@pratian.com', from: 'saritha.modiam@pratian.com',
                 subject: "Build: ${env.JOB_NAME} -Success", 
                 body: "Dear Team,\nThis is an automated mail to confirm that Release is successfully given for following  \"${env.JOB_NAME}\" build: ${env.BUILD_NUMBER}\n\nView the log at:\n ${env.BUILD_URL}\n\nBlue Ocean:\n${env.RUN_DISPLAY_URL}"
         }
