@@ -39,6 +39,23 @@ pipeline {
 				deploy adapters: [tomcat7(credentialsId: '2262fca6-ee0c-4626-a239-37f0ae306f14', path: '', url: 'http://localhost:8085/')], contextPath: 'HappyTripAssignment', onFailure: false, war: '**/*.war'
 			}
 		}
+		stage('Source') { 
+			steps {
+				checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/saritha1919/HappyTripAssignment-TestCases.git']]])
+			 }
+		 }
+		  stage('Testing') {  
+                    tools { 
+                           jdk 'jdk8' 
+                           maven 'Maven' 
+                    } 
+                   steps { 
+                      powershell 'java -version' 
+                      powershell 'mvn -version' 
+                     // bat label: '', script: 'testNGBatchfile.bat' 
+			   powershell 'mvn test'
+                    } 
+                 } 
     }
 	post {
         success {
