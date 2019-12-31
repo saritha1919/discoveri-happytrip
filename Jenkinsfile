@@ -62,9 +62,7 @@ pipeline {
            /* mail to: 'saritha.modiam@pratian.com', from: 'saritha.modiam@pratian.com',
                 subject: "Build: ${env.JOB_NAME} -Success", 
                 body: "Dear Team,\nThis is an automated mail to confirm that Release is successfully given for following  \"${env.JOB_NAME}\" build: ${env.BUILD_NUMBER}\n\nView the log at:\n ${env.BUILD_URL}\n\nBlue Ocean:\n${env.RUN_DISPLAY_URL}"*/
-		 emailext attachmentsPattern: '**/Test-Automaton-Report.html', body: '''${SCRIPT, template="groovy-html.template"}''', 
-                    subject: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - Successful", 
-                    mimeType: 'text/html',to: "saritha.modiam@pratian.com"
+		 emailext attachLog: true, attachmentsPattern: '**/Test-Automaton-Report.html', body: 'Dear Team,\\nThis is an automated mail to confirm that Release is successfully given for following  \\"${env.JOB_NAME}\\" build: ${env.BUILD_NUMBER}\\n\\nView the log at:\\n ${env.BUILD_URL}\\n\\nBlue Ocean:\\n${env.RUN_DISPLAY_URL}', mimeType: 'text/html', recipientProviders: [requestor()], subject: 'Build: ${env.JOB_NAME} -Success', to: 'saritha.modiam@pratian.com'
       
         }
     }
