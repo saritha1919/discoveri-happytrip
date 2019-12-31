@@ -62,7 +62,7 @@ pipeline {
            /* mail to: 'saritha.modiam@pratian.com', from: 'saritha.modiam@pratian.com',
                 subject: "Build: ${env.JOB_NAME} -Success", 
                 body: "Dear Team,\nThis is an automated mail to confirm that Release is successfully given for following  \"${env.JOB_NAME}\" build: ${env.BUILD_NUMBER}\n\nView the log at:\n ${env.BUILD_URL}\n\nBlue Ocean:\n${env.RUN_DISPLAY_URL}"*/
-		 emailext attachLog: true, attachmentsPattern: '**/Test-Automaton-Report.html',  mimeType: 'text/html',  to: 'saritha.modiam@pratian.com; naren.kallakuri@pratian.com'
+		 emailext attachLog: true, attachmentsPattern: '**/Test-Automaton-Report.html',  mimeType: 'text/html',  to: 'saritha.modiam@pratian.com'
       
         }
     }
