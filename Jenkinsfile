@@ -1,14 +1,6 @@
-
+properties([parameters([string(defaultValue: 'Do you want to run sonar qube analysis', description: '', name: 'Sonar', trim: false), string(defaultValue: 'Need deployment?', description: '', name: 'Deployment', trim: false)])])
 pipeline {
-	options(
-    [
-        parameters(
-            [string(defaultValue: 'Need to run Sonar report?', name: 'Sonar'),
-             string(defaultValue: 'Deployment', name: 'DEPLOY_ENV')]
-            )
-
-    ]
-    )  
+	
 	agent any
 	stages {
 		stage('Source') { 
