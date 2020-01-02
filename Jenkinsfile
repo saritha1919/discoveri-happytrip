@@ -1,6 +1,6 @@
 
 pipeline {
-	properties([parameters([string(defaultValue: 'Do you want to run sonar qube analysis', description: '', name: 'Sonar', trim: false), string(defaultValue: 'Need deployment?', description: '', name: 'Deployment', trim: false)])])
+	properties([parameters([booleanParam(defaultValue: false, description: '', name: 'Code analysis'), booleanParam(defaultValue: false, description: '', name: 'Deploment')])])
 	agent any
 	stages {
 		stage('Source') { 
