@@ -18,6 +18,14 @@ pipeline {
                       powershell 'mvn clean package' 
                     } 
                  } 
+
+		stage('Sonar Qube analysis') {
+			steps {
+				 withSonarQubeEnv('SonarQube') {
+                                    powershell 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
+                                    }
+                           }
+                }
 		stage('Archiving Artifacts') { 
                          steps{ 
                              archiveArtifacts 'target/*.war' 
