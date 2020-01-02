@@ -17,7 +17,7 @@ pipeline {
                       powershell 'mvn clean package' 
                     } 
                  } 
-                 stage('Archiving Artifacts') { 
+                /* stage('Archiving Artifacts') { 
                          steps{ 
                              archiveArtifacts 'target/*.war' 
 				  timeout(time:5, unit:'MINUTES') {
@@ -38,7 +38,7 @@ pipeline {
 				echo "Deploying"
 				deploy adapters: [tomcat7(credentialsId: '2262fca6-ee0c-4626-a239-37f0ae306f14', path: '', url: 'http://localhost:8085/')], contextPath: 'HappyTripAssignment', onFailure: false, war: '**/*.war'
 			}
-		}
+		}*/
 		stage('Test Source') { 
 			steps {
 				checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/saritha1919/HappyTripAssignment-TestCases.git']]])
@@ -56,7 +56,7 @@ pipeline {
 			   powershell 'mvn test'
                     } 
                  } 
-    }
+    }*/
 	post {
         always {
            /* mail to: 'saritha.modiam@pratian.com', from: 'saritha.modiam@pratian.com',
