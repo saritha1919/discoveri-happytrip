@@ -1,5 +1,3 @@
- def reportPath = build.getWorkspace().child("test-output/emailable-report.html")
-           msg.setContent(reportPath.readToString(), "text/html");
 
 pipeline {
 	agent any
@@ -57,7 +55,7 @@ pipeline {
            /* mail to: 'saritha.modiam@pratian.com', from: 'saritha.modiam@pratian.com',
                 subject: "Build: ${env.JOB_NAME} -Success", 
                 body: "Dear Team,\nThis is an automated mail to confirm that Release is successfully given for following  \"${env.JOB_NAME}\" build: ${env.BUILD_NUMBER}\n\nView the log at:\n ${env.BUILD_URL}\n\nBlue Ocean:\n${env.RUN_DISPLAY_URL}"*/
-		emailext attachLog: true,subject:currentBuild.currentResult + " : " + env.JOB_NAME,body:reportPath, attachmentsPattern: '**/Test-Automaton-Report.html',  mimeType: 'text/html',  to: 'saritha.modiam@pratian.com'
+		emailext attachLog: true,subject:currentBuild.currentResult + " : " + env.JOB_NAME,body:'${FILE,path="test-output/emailable-report.html"}', attachmentsPattern: '**/Test-Automaton-Report.html',  mimeType: 'text/html',  to: 'saritha.modiam@pratian.com'
 	}
     }
 	
