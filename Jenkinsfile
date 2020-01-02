@@ -1,5 +1,14 @@
 
 pipeline {
+	properties(
+    [
+        parameters(
+            [string(defaultValue: 'Need to run Sonar report?', name: 'Sonar'),
+             string(defaultValue: 'Deployment', name: 'DEPLOY_ENV')]
+            )
+
+    ]
+    )  
 	agent any
 	stages {
 		stage('Source') { 
