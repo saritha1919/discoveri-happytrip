@@ -1,6 +1,6 @@
-
+properties([parameters([booleanParam(defaultValue: false, description: '', name: 'Code analysis'), booleanParam(defaultValue: false, description: '', name: 'Deploment')])])
 pipeline {
-	properties([parameters([booleanParam(defaultValue: false, description: '', name: 'Code analysis'), booleanParam(defaultValue: false, description: '', name: 'Deploment')])])
+	
 	agent any
 	stages {
 		stage('Source') { 
