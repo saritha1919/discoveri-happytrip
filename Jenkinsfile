@@ -65,11 +65,8 @@ pipeline {
 		/*emailext attachLog: true,subject:"${env.Default_Subject}",body:"${env.Default_Content}", attachmentsPattern: '**/Test-Automaton-Report.html',  mimeType: 'text/html',  to: 'saritha.modiam@pratian.com'*/
 	 
             env.ForEmailPlugin = env.WORKSPACE      
-            emailext attachmentsPattern: '**/Test-Automaton-Report.html',      
-            body: '''${SCRIPT, template="groovy_html.template"}''', 
-            subject: currentBuild.currentResult + " : " + env.JOB_NAME, 
-            to: 'saritha.modiam@pratian.com'       
-        }
+            emailext attachmentsPattern: '**/Test-Automaton-Report.html',body: '''${SCRIPT, template="groovy_html.template"}''',subject: currentBuild.currentResult + " : " + env.JOB_NAME,to: 'saritha.modiam@pratian.com'
+	}
     }
 	
 }
