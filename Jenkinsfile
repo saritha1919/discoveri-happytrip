@@ -17,6 +17,18 @@ pipeline {
                       powershell 'mvn clean package' 
                     } 
                  } 
+		stage('Testing') {  
+                    tools { 
+                           jdk 'jdk8' 
+                           maven 'Maven' 
+                    } 
+                   steps { 
+                      powershell 'java -version' 
+                      powershell 'mvn -version' 
+                     // bat label: '', script: 'testNGBatchfile.bat' 
+			   powershell 'mvn test'
+                    } 
+                 } 
     }
 	post {
         always {
