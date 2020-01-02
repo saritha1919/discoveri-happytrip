@@ -19,7 +19,7 @@ pipeline {
                       powershell 'mvn clean package' 
                     } 
                  } 
-		if(${params.CodeAnalysis}){
+		if(env.CodeAnalysis.toBoolean()){
 		stage('Sonar Qube analysis') {
 			steps {
 				 withSonarQubeEnv('SonarQube') {
@@ -36,7 +36,7 @@ pipeline {
                                    }
                          } 
                  } 
-		if(${params.Deployment}){
+		if(env.Deployment.toBoolean()){
 		stage('Deployment'){
 			steps{
 				echo "Deploying"
