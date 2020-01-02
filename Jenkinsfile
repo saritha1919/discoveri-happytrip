@@ -1,6 +1,6 @@
 
 pipeline {
-	properties(
+	options(
     [
         parameters(
             [string(defaultValue: 'Need to run Sonar report?', name: 'Sonar'),
