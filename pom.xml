@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.happytrip</groupId>
 	<artifactId>prabhav</artifactId>
-	<name>HappyTrip</name>
+	<name>HappyTrip1</name>
 	<packaging>war</packaging>
 	<version>1</version>
 	<properties>
