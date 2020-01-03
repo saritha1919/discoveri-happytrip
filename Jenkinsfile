@@ -1,8 +1,11 @@
-properties([parameters([booleanParam(defaultValue: false, description: '', name: 'CodeAnalysis'), booleanParam(defaultValue: false, description: '', name: 'Deployment')])])
 
 pipeline {
 	
 	agent any
+	parameters{
+		booleanParam(defaultValue: false, description: '', name: 'CodeAnalysis'),
+	        booleanParam(defaultValue: false, description: '', name: 'Deployment')
+	}
 	stages {
 		stage('Source') { 
 			steps {
@@ -31,8 +34,8 @@ pipeline {
 				         withSonarQubeEnv('SonarQube') {
                                          powershell 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
 					 }
-                                 }
-                         }
+                                   }
+                                }
 			}
 		}
 		stage('Archiving Artifacts') { 
