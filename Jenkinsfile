@@ -22,15 +22,16 @@ pipeline {
                  } 
 		
 		stage('Sonar Qube analysis') {
-			step{
+			script{
 				if(params.CodeAnalysis){
-					steps {
+			steps{
+				
 				         withSonarQubeEnv('SonarQube') {
                                          powershell 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
 					 }
-                                         }
                                  }
                          }
+			}
 		}
 		stage('Archiving Artifacts') { 
                          steps{ 
@@ -42,14 +43,17 @@ pipeline {
                  } 
 		
 		stage('Deployment'){
-			step{
+			script{
 				if(params.Deployment){
-					steps{
+			steps{
+				
+					
 				             echo "Deploying"
 				              deploy adapters: [tomcat7(credentialsId: '2262fca6-ee0c-4626-a239-37f0ae306f14', path: '', url: 'http://localhost:8085/')], contextPath: 'HappyTripAssignment', onFailure: false, war: '**/*.war'
 			         }
-				}
+				
 		         }
+			}
 		}
 		stage('Test Source') { 
 			steps {
