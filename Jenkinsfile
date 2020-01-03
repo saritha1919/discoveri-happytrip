@@ -18,7 +18,9 @@ pipeline {
                       powershell 'java -version' 
                       powershell 'mvn -version' 
                       powershell 'mvn clean package' 
-		      echo "Selected value: "+params.CodeAnalysis.toBoolean()
+		      echo "Selected value: "+params.CodeAnalysis
+			   echo "unselected value:"+params.Deployment
+			   
                     } 
                  } 
 		
