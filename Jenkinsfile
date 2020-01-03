@@ -1,3 +1,4 @@
+properties([parameters([booleanParam(defaultValue: false, description: '', name: 'CodeAnalysis'), booleanParam(defaultValue: false, description: '', name: 'Deployment')])])
 
 pipeline {
 	
@@ -21,7 +22,7 @@ pipeline {
                  } 
 		
 		stage('Sonar Qube analysis') {
-			if(env.CodeAnalysis.toBoolean()){
+			if(params.CodeAnalysis){
 			steps {
 				 withSonarQubeEnv('SonarQube') {
                                     powershell 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
@@ -39,7 +40,7 @@ pipeline {
                  } 
 		
 		stage('Deployment'){
-			if(env.Deployment.toBoolean()){
+			if(params.Deployment){
 			steps{
 				echo "Deploying"
 				deploy adapters: [tomcat7(credentialsId: '2262fca6-ee0c-4626-a239-37f0ae306f14', path: '', url: 'http://localhost:8085/')], contextPath: 'HappyTripAssignment', onFailure: false, war: '**/*.war'
