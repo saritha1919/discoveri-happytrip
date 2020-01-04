@@ -34,7 +34,7 @@ pipeline {
 				         withSonarQubeEnv('SonarQube') {
                                          /*powershell 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar' +  '-f all/pom.xml ' */
 					 powershell 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.3.0.603:sonar ' + 
-                                         '-f all/pom.xml ' 
+                                         '-f pom.xml '
 					 }
                                    }
                                 }
