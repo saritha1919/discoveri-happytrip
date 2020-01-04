@@ -32,7 +32,7 @@ pipeline {
 				script{
 				if(params.CodeAnalysis == true){
 				         withSonarQubeEnv('SonarQube') {
-                                         powershell 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar' + '-Dsonar.projectVersion=1.0'
+                                         powershell 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar' +  '-f all/pom.xml ' 
 					 }
                                    }
                                 }
