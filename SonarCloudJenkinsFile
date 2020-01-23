@@ -22,7 +22,13 @@ pipeline {
                             
                         script{
                              withSonarQubeEnv(installationName: 'SonarQube'){
-                                    bat label: '', script: 'mvn sonar:sonar'
+                                   // bat label: '', script: 'mvn sonar:sonar'
+				 mvn sonar:sonar 
+   "-Dsonar.projectKey=Happytrip" \
+   "-Dsonar.organization=Pratian" \
+   "-Dsonar.host.url=https://sonarcloud.io" \
+   "-Dsonar.login=f4bb0c6d2e03c2bbd7d7e463e64f76c40a8a1c51"
+				   
                              
                         }
                             }
