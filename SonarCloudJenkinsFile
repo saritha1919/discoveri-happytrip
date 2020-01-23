@@ -22,7 +22,7 @@ pipeline {
                             
                         script{
                              withSonarQubeEnv(installationName: 'SonarQube'){
-			      bat label: '', script: 'mvn sonar:sonar'
+			      bat label: '', script: 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar '
                               }
                           }
                     }
