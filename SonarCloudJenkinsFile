@@ -22,11 +22,8 @@ pipeline {
                             
                         script{
                              withSonarQubeEnv(installationName: 'SonarQube'){
-                                    bat label: '', script: mvn sonar:sonar
-   "-Dsonar.projectKey=Happytrip" \
-   "-Dsonar.organization=Pratian" \
-   "-Dsonar.host.url=https://sonarcloud.io" \
-   "-Dsonar.login=f4bb0c6d2e03c2bbd7d7e463e64f76c40a8a1c51"
+			     mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -Dsonar.host.url=https://sonarcloud.io  -Dsonar.login=f4bb0c6d2e03c2bbd7d7e463e64f76c40a8a1c51 -Dsonar.branch=master
+                              
 				   
                              
                         }
