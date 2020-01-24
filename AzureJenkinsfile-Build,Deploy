@@ -8,7 +8,7 @@ pipeline {
 	    
                  stage('Source') {
                     steps {
-                       checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: ${params.AzureDevOpsURL}]]])
+                       checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: params.AzureDevOpsURL]]])
 			           }        
                  }
                   stage('Build') {
@@ -30,7 +30,7 @@ pipeline {
                   stage('Deployment'){
 			             steps{
 				              script{
-				              deploy adapters: [tomcat7(credentialsId: '2262fca6-ee0c-4626-a239-37f0ae306f14', path: '', url: ${params.TomcatURL})], contextPath: 'HappyTripAssignment-Azuredevops', onFailure: false, war: '**/*.war'
+				              deploy adapters: [tomcat7(credentialsId: '2262fca6-ee0c-4626-a239-37f0ae306f14', path: '', url: params.TomcatURL)], contextPath: 'HappyTripAssignment-Azuredevops', onFailure: false, war: '**/*.war'
 			                }
 			             }
 		           }
