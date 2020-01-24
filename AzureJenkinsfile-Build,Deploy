@@ -1,0 +1,33 @@
+pipeline {
+         agent any
+             stages {
+                 stage('Source') {
+                    steps {
+                       checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://sarithareddy1919@dev.azure.com/sarithareddy1919/Happytrip/_git/discoveri-happytrip.git']]])
+			           }        
+                 }
+                  stage('Build') {
+                          tools {
+                                jdk 'jdk8'
+                                maven 'Maven'
+                            }
+                            steps {
+                                    
+                               powershell 'mvn clean package'
+                                     
+                            }
+                  }
+                  stage('Archiving Artifacts') { 
+                         steps{ 
+                             archiveArtifacts 'target/*.war' 
+                         }
+                  } 
+                  stage('Deployment'){
+			             steps{
+				              script{
+				              deploy adapters: [tomcat7(credentialsId: '2262fca6-ee0c-4626-a239-37f0ae306f14', path: '', url: 'http://172.30.12.175:8085/')], contextPath: 'HappyTripAssignment-Azuredevops', onFailure: false, war: '**/*.war'
+			                }
+			             }
+		           }
+         }
+}
