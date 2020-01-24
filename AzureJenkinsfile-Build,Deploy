@@ -1,8 +1,8 @@
 pipeline {
          agent any
 	 parameters{
-	        string(defaultValue: true, description: '', name: 'AzureDevOpsURL')
-		string(defaultValue: true, description: '', name: 'TomcatURL')
+	        string(defaultValue: "true", description: '', name: 'AzureDevOpsURL')
+		string(defaultValue: "true", description: '', name: 'TomcatURL')
 	}
              stages {
 	    
